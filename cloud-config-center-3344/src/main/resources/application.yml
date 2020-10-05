@@ -1,0 +1,36 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          uri: https://gitee.com/lzz688/spring-cloud-config.git #Git仓库的名字或地址
+          #搜索目录
+          search-paths:
+            - Spring Cloud Config
+          username: lzz688
+          password: liuzhengzhou819
+      #读取分支
+      #rabbitMQ相关配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+
+
+#rabbitMQ相关配置，暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
